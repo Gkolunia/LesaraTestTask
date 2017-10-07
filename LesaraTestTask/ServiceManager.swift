@@ -23,18 +23,31 @@ struct NetworkDomainErrors {
 
 typealias CompletionHandler<T> = (_ succes: Bool, _ object: T?,_ errorMessage: ErrorMessage?) -> ()
 
+struct ApiUrls {
+    static let annonymosToken = "anonuser"
+    static let trendProducts = "trendproducts"
+}
+
+protocol TokenMangerProtocol {
+    var tokenModel : DeviceTokenModel { get }
+}
 
 class ServiceManager {
     
-    func makeRequest<T: Codable>(_ urlString: String, _ httpParams: [String : String]?, _ requestType: RequsetType, _ httpBody: Data? = nil, handler:@escaping CompletionHandler<T>) {
+    static let baseUrl = "https://app-testing.lesara.de/restapi/v5"
+    static let applicationToken = "this_is_an_app_token"
+    
+    private let userSessionManager : TokenMangerProtocol
+    
+    static func makeRequest<T: Codable>(_ urlString: String, _ httpParams: [String : String]? = nil, _ requestType: RequsetType, _ httpBody: Data? = nil, handler:@escaping CompletionHandler<T>) {
         
-        var fullUrl = urlString
+        var fullUrl = baseUrl+urlString+"?app_token="+applicationToken
         
         if let params = httpParams, params.count > 0 {
-            var paramsPart = "?"
+            var paramsPart : String = ""
             for key in params.keys {
                 if let value = params[key] {
-                    paramsPart = paramsPart+key+"="+value+"&"
+                    paramsPart = paramsPart+"&"+key+"="+value
                 }
             }
             fullUrl = fullUrl+paramsPart
@@ -92,35 +105,34 @@ class ServiceManager {
         }
         
     }
+
+    init(_ defaultUserSessionManager: TokenMangerProtocol) {
+        userSessionManager = defaultUserSessionManager
+    }
     
-    func getDeviceToken() {
-
-        if let deviceVendorUUID = UIDevice.current.identifierForVendor, let locale = NSLocale.preferredLanguages.first {
-            let uuid = deviceVendorUUID.uuidString
-            
-            do {
-                let dataBody = try JSONSerialization.data(withJSONObject: ["device_locale" : locale, "app_instance_id" : uuid],
-                                                          options: .prettyPrinted)
-                makeRequest("https://app-testing.lesara.de/restapi/v5/anonuser",
-                            ["app_token" : "this_is_an_app_token"],
-                            RequsetType.post,
-                            dataBody
-                ) { (success, deviceModel : DeviceTokenModel?, error) in
-                    
-                    if let model = deviceModel, success {
-                        print(model)
-                    }
-                    else {
-                        
-                    }
-                    
-                }
-            }
-            catch {
-                
-            }
+    private func makeUrlWithTokenAndStore<T: Codable>(_ urlString: String, _ httpParams: [String : String]? = nil, _ requestType: RequsetType, _ httpBody: Data? = nil, handler:@escaping CompletionHandler<T>) {
+        
+        var tokenAndStoreParams = ["store_id" : userSessionManager.tokenModel.storeId,
+                                   "user_token" : userSessionManager.tokenModel.userToken]
+        
+        if let params = httpParams {
+            tokenAndStoreParams.merge(zip(params.keys, params.values)){ (current, _) in current }
         }
+        
+        ServiceManager.makeRequest(urlString, tokenAndStoreParams, requestType, httpBody, handler: handler)
+        
+    }
+    
+}
 
+extension ServiceManager {
+    
+    func getProducts(_ pageNumber: Int = 0, handler:@escaping CompletionHandler<ProductsModel>) {
+        var pageParam : [String : String]?
+        if pageNumber != 0 {
+            pageParam = ["page_override" : String(pageNumber)]
+        }
+        makeUrlWithTokenAndStore(ApiUrls.trendProducts, pageParam, RequsetType.get, handler: handler)
     }
     
 }

@@ -27,9 +27,6 @@ class AppCoordinator {
     }
     
     func start() {
-        
-        ServiceManager().getDeviceToken()
-        
         childCoordinator = ProductsCoordinator()
         childCoordinator?.start(from: rootNavigationController)
     }
