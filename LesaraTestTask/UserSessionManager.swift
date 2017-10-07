@@ -42,7 +42,9 @@ struct UserSessionManager : TokenMangerProtocol {
                 handler(nil)
             }
         }
-        handler(nil)
+        else {
+            handler(nil)
+        }
     }
     
     

@@ -24,8 +24,8 @@ struct NetworkDomainErrors {
 typealias CompletionHandler<T> = (_ succes: Bool, _ object: T?,_ errorMessage: ErrorMessage?) -> ()
 
 struct ApiUrls {
-    static let annonymosToken = "anonuser"
-    static let trendProducts = "trendproducts"
+    static let annonymosToken = "/anonuser"
+    static let trendProducts = "/trendproducts"
 }
 
 protocol TokenMangerProtocol {
@@ -112,7 +112,7 @@ class ServiceManager {
     
     private func makeUrlWithTokenAndStore<T: Codable>(_ urlString: String, _ httpParams: [String : String]? = nil, _ requestType: RequsetType, _ httpBody: Data? = nil, handler:@escaping CompletionHandler<T>) {
         
-        var tokenAndStoreParams = ["store_id" : userSessionManager.tokenModel.storeId,
+        var tokenAndStoreParams = ["store_id" : String(userSessionManager.tokenModel.storeId),
                                    "user_token" : userSessionManager.tokenModel.userToken]
         
         if let params = httpParams {

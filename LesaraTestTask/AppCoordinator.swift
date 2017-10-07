@@ -19,6 +19,8 @@ class AppCoordinator {
     private let rootNavigationController : UINavigationController = UINavigationController()
     private var childCoordinator : CoordinatorProtocol?
     
+    var manager : ServiceManager!
+    
     init(_ defaultWindow: UIWindow) {
         rootWindow = defaultWindow
         rootWindow.rootViewController = rootNavigationController
@@ -27,6 +29,14 @@ class AppCoordinator {
     }
     
     func start() {
+        UserSessionManager.getDeviceToken { (userSession) in
+            if let currentUserSession = userSession {
+                self.manager = ServiceManager(currentUserSession)
+                self.manager.getProducts(handler: { (success, products, error) in
+                    print(products)
+                })
+            }
+        }
         childCoordinator = ProductsCoordinator()
         childCoordinator?.start(from: rootNavigationController)
     }
