@@ -15,11 +15,5 @@ class ViewController: UIViewController {
         self.title = "My Child Coordinator"
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
