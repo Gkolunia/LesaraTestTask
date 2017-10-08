@@ -39,10 +39,13 @@ class UserSessionManager :  UserSessionManagerProtocol, TokenMangerProtocol {
                         self.tokenModel = existToken
                         handler(self)
                     }
+                    else {
+                        handler(nil)
+                    }
                     if let errorExist = error {
                         print(errorExist)
                     }
-                    handler(nil)
+                    
                 })
             }
             catch {

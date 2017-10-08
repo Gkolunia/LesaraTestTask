@@ -40,7 +40,7 @@ struct ProductsModel : PaginationModel {
         count = try container.decode(Int.self, forKey: .count)
         products = try container.decode([ProductItem].self, forKey: .products)
         pages = try container.decode(Int.self, forKey: .pages)
-        do { // 
+        do { // Sometimes currentPage is number, but sometime it is string. Is it bug on the server?
             currentPage = try container.decode(Int.self, forKey: .currentPage)
         }
         catch {
