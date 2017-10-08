@@ -125,7 +125,7 @@ class ServiceManager {
     
 }
 
-extension ServiceManager {
+extension ServiceManager : ProductsListServiceManager {
     
     func getProducts(_ pageNumber: Int = 0, handler:@escaping CompletionHandler<ProductsModel>) {
         var pageParam : [String : String]?

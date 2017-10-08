@@ -8,26 +8,13 @@
 
 import Foundation
 
-protocol PaginationModel {
+protocol PaginationModel : Codable {
     var count : Int { get }
     var pages : Int { get }
     var currentPage : Int { get }
 }
 
-struct ProductItem : Codable {
-    let name : String
-    let icon : String
-    let price : String
-    
-    enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case icon = "thumbnail_path"
-        case price = "price"
-    }
-    
-}
-
-struct ProductsModel : Codable, PaginationModel {
+struct ProductsModel : PaginationModel {
     let products : [ProductItem]
     var count : Int
     var pages : Int

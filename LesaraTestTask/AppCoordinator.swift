@@ -32,13 +32,10 @@ class AppCoordinator {
         UserSessionManager.getDeviceToken { (userSession) in
             if let currentUserSession = userSession {
                 self.manager = ServiceManager(currentUserSession)
-                self.manager.getProducts(handler: { (success, products, error) in
-                    print(products)
-                })
+                self.childCoordinator = ProductsCoordinator(self.manager)
+                self.childCoordinator?.start(from: self.rootNavigationController)
             }
         }
-        childCoordinator = ProductsCoordinator()
-        childCoordinator?.start(from: rootNavigationController)
     }
     
 }
