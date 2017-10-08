@@ -35,7 +35,7 @@ struct ServiceConstants {
 }
 
 protocol TokenMangerProtocol {
-    var tokenModel : DeviceTokenModel { get }
+    var tokenModel : DeviceTokenModel? { get }
 }
 
 class ServiceManager {
@@ -115,8 +115,8 @@ class ServiceManager {
     
     private func makeUrlWithTokenAndStore<T: Codable>(_ urlString: String, _ httpParams: [String : String]? = nil, _ requestType: RequsetType, _ httpBody: Data? = nil, handler:@escaping CompletionHandler<T>) {
         
-        var tokenAndStoreParams = ["store_id" : String(userSessionManager.tokenModel.storeId),
-                                   "user_token" : userSessionManager.tokenModel.userToken]
+        var tokenAndStoreParams = ["store_id" : String(userSessionManager.tokenModel!.storeId),
+                                   "user_token" : userSessionManager.tokenModel!.userToken]
         
         if let params = httpParams {
             tokenAndStoreParams.merge(zip(params.keys, params.values)){ (current, _) in current }

@@ -8,14 +8,15 @@
 
 import UIKit
 
-struct UserSessionManager : TokenMangerProtocol {
+class UserSessionManager :  UserSessionManagerProtocol, TokenMangerProtocol {
     
-    var tokenModel: DeviceTokenModel
+    var tokenModel: DeviceTokenModel?
 
-    static func getDeviceToken(handler: @escaping (_ sessionWithToken: UserSessionManager?) -> ()) {
+    func getDeviceToken(handler: @escaping (_ sessionWithToken: UserSessionManager?) -> ()) {
         
         if let lastToken = UserDefaults().lastUserToken() {
-            handler(UserSessionManager(tokenModel: lastToken))
+            self.tokenModel = lastToken
+            handler(self)
             return
         }
         
@@ -29,7 +30,8 @@ struct UserSessionManager : TokenMangerProtocol {
                 ServiceManager.makeRequest(ApiUrls.annonymosToken, nil, RequsetType.post, dataBody, handler: { (success, tokenModel : DeviceTokenModel?, error) in
                     if let existToken = tokenModel {
                         UserDefaults().saveUserToken(existToken)
-                        handler(UserSessionManager(tokenModel: existToken))
+                        self.tokenModel = existToken
+                        handler(self)
                     }
                     if let errorExist = error {
                         print(errorExist)

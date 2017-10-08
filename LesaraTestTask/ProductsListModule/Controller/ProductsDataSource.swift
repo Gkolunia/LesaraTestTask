@@ -38,7 +38,6 @@ class ProductsDataSource: NSObject, ProductsDataSourceProtocol {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductItemCell.reuseId, for: indexPath) as? ProductItemCell {
             cell.setupCell(with: items[indexPath.row])
             return cell
-            
         }
         return UICollectionViewCell()
     }

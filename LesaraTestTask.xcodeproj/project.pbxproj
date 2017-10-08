@@ -12,7 +12,7 @@
 		A30488351F88D87D00DA0020 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A30488331F88D87D00DA0020 /* Main.storyboard */; };
 		A30488371F88D87D00DA0020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A30488361F88D87D00DA0020 /* Assets.xcassets */; };
 		A304883A1F88D87D00DA0020 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A30488381F88D87D00DA0020 /* LaunchScreen.storyboard */; };
-		A30488451F88D87D00DA0020 /* LesaraTestTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30488441F88D87D00DA0020 /* LesaraTestTaskTests.swift */; };
+		A30488451F88D87D00DA0020 /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30488441F88D87D00DA0020 /* AppCoordinatorTests.swift */; };
 		A30488501F88D87D00DA0020 /* LesaraTestTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304884F1F88D87D00DA0020 /* LesaraTestTaskUITests.swift */; };
 		A304885F1F88DC9500DA0020 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304885E1F88DC9500DA0020 /* AppCoordinator.swift */; };
 		A30488611F88EC3D00DA0020 /* ProductsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30488601F88EC3D00DA0020 /* ProductsCoordinator.swift */; };
@@ -30,6 +30,10 @@
 		A30488801F8A39BA00DA0020 /* ProductsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304887F1F8A39BA00DA0020 /* ProductsDataSource.swift */; };
 		A30488821F8A55B100DA0020 /* EndlessScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30488811F8A55B100DA0020 /* EndlessScrollController.swift */; };
 		A326F85A1F8A727500A18011 /* ProductItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A326F8591F8A727500A18011 /* ProductItemCell.xib */; };
+		A326F8801F8A918E00A18011 /* ProductsCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326F87F1F8A918E00A18011 /* ProductsCoordinatorTests.swift */; };
+		A326F8821F8A969700A18011 /* ProductsDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326F8811F8A969700A18011 /* ProductsDataSourceTests.swift */; };
+		A326F8841F8A9B8000A18011 /* StubModelsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326F8831F8A9B8000A18011 /* StubModelsGenerator.swift */; };
+		A3C33CDF1F8AA63D002E0052 /* PaginationControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C33CDE1F8AA63D002E0052 /* PaginationControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +62,7 @@
 		A30488391F88D87D00DA0020 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A304883B1F88D87D00DA0020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A30488401F88D87D00DA0020 /* LesaraTestTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LesaraTestTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A30488441F88D87D00DA0020 /* LesaraTestTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LesaraTestTaskTests.swift; sourceTree = "<group>"; };
+		A30488441F88D87D00DA0020 /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
 		A30488461F88D87D00DA0020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A304884B1F88D87D00DA0020 /* LesaraTestTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LesaraTestTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A304884F1F88D87D00DA0020 /* LesaraTestTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LesaraTestTaskUITests.swift; sourceTree = "<group>"; };
@@ -79,6 +83,10 @@
 		A304887F1F8A39BA00DA0020 /* ProductsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsDataSource.swift; sourceTree = "<group>"; };
 		A30488811F8A55B100DA0020 /* EndlessScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessScrollController.swift; sourceTree = "<group>"; };
 		A326F8591F8A727500A18011 /* ProductItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductItemCell.xib; sourceTree = "<group>"; };
+		A326F87F1F8A918E00A18011 /* ProductsCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCoordinatorTests.swift; sourceTree = "<group>"; };
+		A326F8811F8A969700A18011 /* ProductsDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsDataSourceTests.swift; sourceTree = "<group>"; };
+		A326F8831F8A9B8000A18011 /* StubModelsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubModelsGenerator.swift; sourceTree = "<group>"; };
+		A3C33CDE1F8AA63D002E0052 /* PaginationControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +151,11 @@
 		A30488431F88D87D00DA0020 /* LesaraTestTaskTests */ = {
 			isa = PBXGroup;
 			children = (
-				A30488441F88D87D00DA0020 /* LesaraTestTaskTests.swift */,
+				A30488441F88D87D00DA0020 /* AppCoordinatorTests.swift */,
+				A326F87F1F8A918E00A18011 /* ProductsCoordinatorTests.swift */,
+				A326F8811F8A969700A18011 /* ProductsDataSourceTests.swift */,
+				A3C33CDE1F8AA63D002E0052 /* PaginationControllerTests.swift */,
+				A326F8831F8A9B8000A18011 /* StubModelsGenerator.swift */,
 				A30488461F88D87D00DA0020 /* Info.plist */,
 			);
 			path = LesaraTestTaskTests;
@@ -420,7 +432,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A30488451F88D87D00DA0020 /* LesaraTestTaskTests.swift in Sources */,
+				A326F8821F8A969700A18011 /* ProductsDataSourceTests.swift in Sources */,
+				A3C33CDF1F8AA63D002E0052 /* PaginationControllerTests.swift in Sources */,
+				A326F8841F8A9B8000A18011 /* StubModelsGenerator.swift in Sources */,
+				A326F8801F8A918E00A18011 /* ProductsCoordinatorTests.swift in Sources */,
+				A30488451F88D87D00DA0020 /* AppCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

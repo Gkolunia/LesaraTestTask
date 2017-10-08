@@ -25,7 +25,9 @@ class ProductsListController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         loadDataOrNextPage()
+        
         endlessScrollController.needsLoadMoreCallBack = {
             self.loadDataOrNextPage()
         }

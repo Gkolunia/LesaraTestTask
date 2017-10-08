@@ -10,7 +10,10 @@ import UIKit
 
 protocol CoordinatorProtocol {
     func start(from navigationController: UINavigationController)
-    
+}
+
+protocol UserSessionManagerProtocol {
+    func getDeviceToken(handler: @escaping (_ sessionWithToken: UserSessionManager?) -> ())
 }
 
 class AppCoordinator {
@@ -19,7 +22,8 @@ class AppCoordinator {
     private let rootNavigationController : UINavigationController = UINavigationController()
     private var childCoordinator : CoordinatorProtocol?
     
-    var manager : ServiceManager!
+    var serviceManager : ServiceManager!
+    var userSessionManager : UserSessionManagerProtocol!
     
     init(_ defaultWindow: UIWindow) {
         rootWindow = defaultWindow
@@ -30,14 +34,18 @@ class AppCoordinator {
     
     func start() {
         rootWindow.startLoading()
-        UserSessionManager.getDeviceToken {[unowned self] (userSession) in
+        userSessionManager.getDeviceToken {[unowned self] (userSession) in
             if let currentUserSession = userSession {
-                self.manager = ServiceManager(currentUserSession)
-                self.childCoordinator = ProductsCoordinator(self.manager)
-                self.childCoordinator?.start(from: self.rootNavigationController)
+                self.serviceManager = ServiceManager(currentUserSession)
+                self.showProductsList()
             }
             self.rootWindow.stopLaading()
         }
+    }
+    
+    private func showProductsList() {
+        self.childCoordinator = ProductsCoordinator(self.serviceManager)
+        self.childCoordinator?.start(from: self.rootNavigationController)
     }
     
 }

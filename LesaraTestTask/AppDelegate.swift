@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let rootWindow = window {
             appCoordinator = AppCoordinator(rootWindow)
+            appCoordinator?.userSessionManager = UserSessionManager()
             appCoordinator?.start()
         }
         

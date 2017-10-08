@@ -15,6 +15,7 @@ protocol ProductsListServiceManager {
 class ProductsCoordinator: CoordinatorProtocol {
     
     var productsServiceManager : ProductsListServiceManager
+    weak var productsListController : ProductsListController?
     
     init(_ manager : ProductsListServiceManager) {
         productsServiceManager = manager
@@ -23,16 +24,19 @@ class ProductsCoordinator: CoordinatorProtocol {
     func start(from navigationController: UINavigationController) {
         let productsController = UIStoryboard.productsListController()
         productsController.loadViewIfNeeded()
-        let pagination = PaginationController({[unowned self] (pageNumber, handler) in
+        
+        productsController.paginationController = PaginationController({[unowned self] (pageNumber, handler) in
             self.productsServiceManager.getProducts(pageNumber, handler: handler)
         })
-        productsController.paginationController = pagination
         productsController.dataSource = ProductsDataSource(productsController.collectionView)
         
         let endlessScrollController = EndlessScrollController(productsController.collectionView)
         productsController.endlessScrollController = endlessScrollController
         productsController.title = "Products List"
+        
         navigationController.pushViewController(productsController, animated: true)
+        
+        productsListController = productsController
     }
     
 }

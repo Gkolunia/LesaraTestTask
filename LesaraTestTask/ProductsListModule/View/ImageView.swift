@@ -26,12 +26,12 @@ class ImageView : UIImageView {
                 print(error)
                 return
             }
+            
             DispatchQueue.main.async(execute: { () -> Void in
                 if let dataExist = data {
                     let image = UIImage(data: dataExist)
                     self?.image = image
                 }
-                
             })
             
         })
