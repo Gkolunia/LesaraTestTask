@@ -8,26 +8,36 @@
 
 import UIKit
 
+protocol ProductsDataSourceProtocol : UICollectionViewDataSource {
+    func addProducts(_ products: [ProductItem])
+}
+
+protocol EndlessScrollControllerProtocol : UIScrollViewDelegate {
+    var needsLoadMoreCallBack : (() -> ())? { get set }
+}
+
 class ProductsListController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView : UICollectionView!
+    var dataSource : ProductsDataSourceProtocol!
     var paginationController : PaginationController<ProductsModel>!
+    var endlessScrollController : EndlessScrollControllerProtocol!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "Products List"
-        paginationController.nextPage { (success, products, error) in
-            
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadDataOrNextPage()
+        endlessScrollController.needsLoadMoreCallBack = {
+            self.loadDataOrNextPage()
         }
     }
     
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//    }
+    private func loadDataOrNextPage() {
+        paginationController.nextPage { (success, products, error) in
+            if let existProducts = products?.products, existProducts.count > 0  {
+                self.dataSource.addProducts(existProducts)
+            }
+        }
+    }
 
 }
 

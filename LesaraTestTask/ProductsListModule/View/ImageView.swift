@@ -20,15 +20,18 @@ class ImageView : UIImageView {
     
     public func loadImageFromURL(url: URL) {
         
-        urlTask = URLSession.shared.dataTask(with: url, completionHandler: {[unowned self] (data, response, error) -> Void in
+        urlTask = URLSession.shared.dataTask(with: url, completionHandler: {[weak self] (data, response, error) -> Void in
             
             if let error = error {
                 print(error)
                 return
             }
             DispatchQueue.main.async(execute: { () -> Void in
-                let image = UIImage(data: data!)
-                self.image = image
+                if let dataExist = data {
+                    let image = UIImage(data: dataExist)
+                    self?.image = image
+                }
+                
             })
             
         })

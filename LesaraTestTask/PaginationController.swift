@@ -12,24 +12,34 @@ class PaginationController<T : PaginationModel> {
 
     typealias PaginationRequestHandler = (Int, @escaping (Bool, T?, ErrorMessage?) -> ()) -> ()
     
-    var paginationModel : PaginationModel?
     var paginationRequest : PaginationRequestHandler
+    
+    private var paginationModel : PaginationModel?
+    private var isLoadingNewPage : Bool = false
     
     init(_ defaultPaginationRequest : @escaping PaginationRequestHandler) {
         paginationRequest = defaultPaginationRequest
     }
 
     func nextPage(_ handler:@escaping (Bool, T?, ErrorMessage?) -> ()) {
-        let handleResponseState = {[unowned self] (success: Bool, paginationState : T?, error : ErrorMessage?) in
-            self.paginationModel = paginationState
-            handler(success, paginationState, error)
+        if !isLoadingNewPage {
+            isLoadingNewPage = true
+            let handleResponseState = {[unowned self] (success: Bool, paginationState : T?, error : ErrorMessage?) in
+                self.paginationModel = paginationState
+                handler(success, paginationState, error)
+                self.isLoadingNewPage = false
+            }
+            if let existState = paginationModel {
+                paginationRequest(existState.currentPage+1, handleResponseState)
+            }
+            else {
+                paginationRequest(1, handleResponseState)
+            }
         }
-        if let existState = paginationModel {
-            paginationRequest(existState.currentPage+1, handleResponseState)
-        }
-        else {
-            paginationRequest(1, handleResponseState)
-        }  
+    }
+    
+    func resetState() {
+        paginationModel = nil
     }
 
 }

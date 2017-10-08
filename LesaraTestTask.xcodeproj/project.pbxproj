@@ -27,6 +27,8 @@
 		A304887A1F8A1F9800DA0020 /* ProductItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30488791F8A1F9800DA0020 /* ProductItemModel.swift */; };
 		A304887C1F8A205300DA0020 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304887B1F8A205300DA0020 /* ImageView.swift */; };
 		A304887E1F8A231A00DA0020 /* PaginationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304887D1F8A231A00DA0020 /* PaginationController.swift */; };
+		A30488801F8A39BA00DA0020 /* ProductsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304887F1F8A39BA00DA0020 /* ProductsDataSource.swift */; };
+		A30488821F8A55B100DA0020 /* EndlessScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30488811F8A55B100DA0020 /* EndlessScrollController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		A30488791F8A1F9800DA0020 /* ProductItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItemModel.swift; sourceTree = "<group>"; };
 		A304887B1F8A205300DA0020 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		A304887D1F8A231A00DA0020 /* PaginationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationController.swift; sourceTree = "<group>"; };
+		A304887F1F8A39BA00DA0020 /* ProductsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsDataSource.swift; sourceTree = "<group>"; };
+		A30488811F8A55B100DA0020 /* EndlessScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessScrollController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +203,8 @@
 			isa = PBXGroup;
 			children = (
 				A30488311F88D87D00DA0020 /* ProductsListController.swift */,
+				A304887F1F8A39BA00DA0020 /* ProductsDataSource.swift */,
+				A30488811F8A55B100DA0020 /* EndlessScrollController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 			files = (
 				A30488751F8A1F2B00DA0020 /* ProductItemCell.swift in Sources */,
 				A304886F1F8977F100DA0020 /* UserDefaults+UserToken.swift in Sources */,
+				A30488801F8A39BA00DA0020 /* ProductsDataSource.swift in Sources */,
 				A304887A1F8A1F9800DA0020 /* ProductItemModel.swift in Sources */,
 				A30488611F88EC3D00DA0020 /* ProductsCoordinator.swift in Sources */,
 				A304886D1F8974E600DA0020 /* ProductsModel.swift in Sources */,
@@ -363,6 +370,7 @@
 				A304885F1F88DC9500DA0020 /* AppCoordinator.swift in Sources */,
 				A30488321F88D87D00DA0020 /* ProductsListController.swift in Sources */,
 				A30488681F89061100DA0020 /* DeviceTokenModel.swift in Sources */,
+				A30488821F8A55B100DA0020 /* EndlessScrollController.swift in Sources */,
 				A30488631F88FD7B00DA0020 /* UserSessionManager.swift in Sources */,
 				A30488711F8A1E1D00DA0020 /* StoryBoard+AppControllers.swift in Sources */,
 				A30488301F88D87D00DA0020 /* AppDelegate.swift in Sources */,

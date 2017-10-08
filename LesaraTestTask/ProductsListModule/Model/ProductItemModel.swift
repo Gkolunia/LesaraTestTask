@@ -10,13 +10,20 @@ import Foundation
 
 struct ProductItem : Codable {
     let name : String
-    let icon : String
-    let price : String
+    let iconUrl : URL
+    let price : Float
     
     enum CodingKeys: String, CodingKey {
         case name = "name"
-        case icon = "thumbnail_path"
+        case iconUrl = "thumbnail_path"
         case price = "price"
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        price = try Float(container.decode(String.self, forKey: .price))!
+        iconUrl = try URL(string: ServiceConstants.sourceBaseUrl+container.decode(String.self, forKey: .iconUrl))!
     }
     
 }

@@ -28,20 +28,23 @@ struct ApiUrls {
     static let trendProducts = "/trendproducts"
 }
 
+struct ServiceConstants {
+    static let baseUrl = "https://app-testing.lesara.de/restapi/v5"
+    static let applicationToken = "this_is_an_app_token"
+    static let sourceBaseUrl = "https://cdn.lesara.io/"
+}
+
 protocol TokenMangerProtocol {
     var tokenModel : DeviceTokenModel { get }
 }
 
 class ServiceManager {
-    
-    static let baseUrl = "https://app-testing.lesara.de/restapi/v5"
-    static let applicationToken = "this_is_an_app_token"
-    
+
     private let userSessionManager : TokenMangerProtocol
     
     static func makeRequest<T: Codable>(_ urlString: String, _ httpParams: [String : String]? = nil, _ requestType: RequsetType, _ httpBody: Data? = nil, handler:@escaping CompletionHandler<T>) {
         
-        var fullUrl = baseUrl+urlString+"?app_token="+applicationToken
+        var fullUrl = ServiceConstants.baseUrl+urlString+"?app_token="+ServiceConstants.applicationToken
         
         if let params = httpParams, params.count > 0 {
             var paramsPart : String = ""

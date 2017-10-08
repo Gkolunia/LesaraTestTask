@@ -37,7 +37,12 @@ struct ProductsModel : PaginationModel {
         count = try container.decode(Int.self, forKey: .count)
         products = try container.decode([ProductItem].self, forKey: .products)
         pages = try container.decode(Int.self, forKey: .pages)
-        currentPage = try Int(container.decode(String.self, forKey: .currentPage))!
+        do { // 
+            currentPage = try container.decode(Int.self, forKey: .currentPage)
+        }
+        catch {
+            currentPage = try Int(container.decode(String.self, forKey: .currentPage))!
+        }
     }
     
 }
