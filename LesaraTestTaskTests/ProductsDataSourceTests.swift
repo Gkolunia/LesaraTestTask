@@ -47,7 +47,7 @@ class ProductsDataSourceTests: XCTestCase {
     }
     
     func testAddProducts() {
-        let products = StubModelsGenerator.generateTrendsModelStub()
+        let products = StubModelsGenerator.generateProductsStub()
         dataSource.addProducts(products)
         XCTAssert(products.count == collectionView.insertedCount)
         XCTAssert(collectionView.dataSource?.collectionView(collectionView, numberOfItemsInSection: 0) == products.count)

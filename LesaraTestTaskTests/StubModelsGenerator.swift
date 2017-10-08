@@ -11,7 +11,7 @@ import XCTest
 
 class StubModelsGenerator {
     
-    static func generateTrendsModelStub() -> [ProductItem] {
+    static func generateProductsStub() -> [ProductItem] {
         
         let item1 = ["price" : "16.9900",
                      "name" : "Kurzes Tunika-Kleid mit Ärmelrüschen",
@@ -34,6 +34,23 @@ class StubModelsGenerator {
         let stub3 = try! JSONDecoder().decode(ProductItem.self, from: data3)
         
         return [stub1, stub2, stub3]
+        
     }
     
+    static func generateTrendsModelStub() -> ProductsModel {
+        
+        let item1 = ["price" : "16.9900",
+                     "name" : "Kurzes Tunika-Kleid mit Ärmelrüschen",
+                     "thumbnail_path" : "catalog/product/cache/1/image/400x/9df78eab33525d08d6e5fb8d27136e95/l/e/lesa3_411ms-01-2.jpg"]
+        
+        let rootModel = ["trend_products" : [ "products" : [item1],
+                                              "number_products" : 17000,
+                                              "number_pages" : 365,
+                                              "current_page" : "1"]] as [String : Any]
+        
+        let data = try! JSONSerialization.data(withJSONObject: rootModel, options: .prettyPrinted)
+        let stub = try! JSONDecoder().decode(ProductsModel.self, from: data)
+        
+        return stub
+    }
 }
