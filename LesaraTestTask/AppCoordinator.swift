@@ -29,12 +29,14 @@ class AppCoordinator {
     }
     
     func start() {
-        UserSessionManager.getDeviceToken { (userSession) in
+        rootWindow.startLoading()
+        UserSessionManager.getDeviceToken {[unowned self] (userSession) in
             if let currentUserSession = userSession {
                 self.manager = ServiceManager(currentUserSession)
                 self.childCoordinator = ProductsCoordinator(self.manager)
                 self.childCoordinator?.start(from: self.rootNavigationController)
             }
+            self.rootWindow.stopLaading()
         }
     }
     

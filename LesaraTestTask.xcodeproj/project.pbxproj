@@ -129,15 +129,13 @@
 		A304882E1F88D87D00DA0020 /* LesaraTestTask */ = {
 			isa = PBXGroup;
 			children = (
-				A30488721F8A1F0000DA0020 /* ProductsListModule */,
-				A304886B1F8922AD00DA0020 /* Extensions */,
-				A304885D1F88DC4D00DA0020 /* Resources */,
 				A304882F1F88D87D00DA0020 /* AppDelegate.swift */,
 				A304885E1F88DC9500DA0020 /* AppCoordinator.swift */,
-				A30488621F88FD7B00DA0020 /* UserSessionManager.swift */,
-				A30488641F88FD9300DA0020 /* ServiceManager.swift */,
-				A30488671F89061100DA0020 /* DeviceTokenModel.swift */,
-				A304887D1F8A231A00DA0020 /* PaginationController.swift */,
+				A326F87C1F8A7D0A00A18011 /* Base */,
+				A30488721F8A1F0000DA0020 /* ProductsListModule */,
+				A326F87B1F8A7C8B00A18011 /* Managers */,
+				A304886B1F8922AD00DA0020 /* Extensions */,
+				A304885D1F88DC4D00DA0020 /* Resources */,
 			);
 			path = LesaraTestTask;
 			sourceTree = "<group>";
@@ -225,6 +223,40 @@
 			children = (
 				A304886C1F8974E600DA0020 /* ProductsModel.swift */,
 				A30488791F8A1F9800DA0020 /* ProductItemModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A326F87B1F8A7C8B00A18011 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A326F87E1F8A7D2B00A18011 /* Model */,
+				A30488621F88FD7B00DA0020 /* UserSessionManager.swift */,
+				A30488641F88FD9300DA0020 /* ServiceManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		A326F87C1F8A7D0A00A18011 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A326F87D1F8A7D0F00A18011 /* Controller */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		A326F87D1F8A7D0F00A18011 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A304887D1F8A231A00DA0020 /* PaginationController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A326F87E1F8A7D2B00A18011 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A30488671F89061100DA0020 /* DeviceTokenModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
