@@ -13,7 +13,7 @@ fileprivate struct UserDefaultsConstants {
 }
 
 /**
- * @brief UserDefaults for saving user credentials. Just for convenience usage.
+ * @brief UserDefaults for saving user token. Just for convenience usage.
  */
 extension UserDefaults {
     

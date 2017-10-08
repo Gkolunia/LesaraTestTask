@@ -17,6 +17,7 @@ class ProductsDataSource: NSObject, ProductsDataSourceProtocol {
         super.init()
         collectionView = defaultCollectionView
         collectionView?.dataSource = self
+        collectionView?.register(UINib(nibName: "ProductItemCell", bundle:nil), forCellWithReuseIdentifier: ProductItemCell.reuseId)
     }
     
     func addProducts(_ products: [ProductItem]) {

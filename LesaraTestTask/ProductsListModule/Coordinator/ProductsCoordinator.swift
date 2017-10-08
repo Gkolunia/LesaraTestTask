@@ -22,7 +22,7 @@ class ProductsCoordinator: CoordinatorProtocol {
     
     func start(from navigationController: UINavigationController) {
         let productsController = UIStoryboard.productsListController()
-        productsController.loadView()
+        productsController.loadViewIfNeeded()
         let pagination = PaginationController({[unowned self] (pageNumber, handler) in
             self.productsServiceManager.getProducts(pageNumber, handler: handler)
         })
