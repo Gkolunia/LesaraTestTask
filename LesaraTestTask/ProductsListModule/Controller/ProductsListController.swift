@@ -43,7 +43,7 @@ class ProductsListController: UIViewController {
     }
     
     private func loadDataOrNextPage() {
-        paginationController.nextPage { (success, products, error) in
+        paginationController.nextPage {[unowned self] (success, products, error) in
             if let existProducts = products?.products, existProducts.count > 0  {
                 self.dataSource.addProducts(existProducts) // If new data exist, append it to current data source.
             }

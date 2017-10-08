@@ -20,8 +20,8 @@ class EndlessScrollController : NSObject, EndlessScrollControllerProtocol {
         scrollView?.delegate = self
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if ((scrollView.contentOffset.y + scrollView.frame.size.height*4) >= scrollView.contentSize.height) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if ((scrollView.contentOffset.y + scrollView.frame.size.height*8) >= scrollView.contentSize.height) {
             if let callBack = needsLoadMoreCallBack {
                 callBack()
             }

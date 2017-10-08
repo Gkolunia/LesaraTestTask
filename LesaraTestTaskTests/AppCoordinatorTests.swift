@@ -29,21 +29,21 @@ class AppCoordinatorTests: XCTestCase {
     }
     
     func testStartAppCoordinatorSuccess() {
-        
+
         class UserSessionManagerMock : UserSessionManagerProtocol {
             func getDeviceToken(handler: @escaping (UserSessionManager?) -> ()) {
                 handler(UserSessionManager())
             }
         }
-        
+
         let window = UIWindow()
         let coordinator = AppCoordinator(window)
         coordinator.userSessionManager = UserSessionManagerMock()
         coordinator.start()
-        
+
         XCTAssert(coordinator.serviceManager != nil)
         XCTAssert(coordinator.userSessionManager != nil)
-        
+
     }
     
     func testStartAppCoordinatorFailure() {

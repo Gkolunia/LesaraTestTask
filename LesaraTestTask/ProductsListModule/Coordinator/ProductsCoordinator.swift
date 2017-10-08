@@ -35,7 +35,7 @@ class ProductsCoordinator: CoordinatorProtocol {
         
         // Configuration of products controller.
         productsController.loadViewIfNeeded()
-        productsController.paginationController = PaginationController({[unowned self] (pageNumber, handler) in
+        productsController.paginationController = PaginationController({ (pageNumber, handler) in
             self.productsServiceManager.getProducts(pageNumber, handler: handler)
         })
         productsController.dataSource = ProductsDataSource(productsController.collectionView)
