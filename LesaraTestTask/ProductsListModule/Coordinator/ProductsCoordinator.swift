@@ -8,12 +8,21 @@
 
 import UIKit
 
+/**
+ * @brief Protocol of service manager which can get list of products.
+ */
 protocol ProductsListServiceManager {
     func getProducts(_ pageNumber: Int, handler:@escaping CompletionHandler<ProductsModel>)
 }
 
+/**
+ * @brief Coordinator of products module. Can be expanded in further for show details.
+ */
 class ProductsCoordinator: CoordinatorProtocol {
     
+    /**
+     * @brief Service manger for getting products list.
+     */
     var productsServiceManager : ProductsListServiceManager
     weak var productsListController : ProductsListController?
     
@@ -23,8 +32,9 @@ class ProductsCoordinator: CoordinatorProtocol {
     
     func start(from navigationController: UINavigationController) {
         let productsController = UIStoryboard.productsListController()
-        productsController.loadViewIfNeeded()
         
+        // Configuration of products controller.
+        productsController.loadViewIfNeeded()
         productsController.paginationController = PaginationController({[unowned self] (pageNumber, handler) in
             self.productsServiceManager.getProducts(pageNumber, handler: handler)
         })

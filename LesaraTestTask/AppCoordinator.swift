@@ -8,7 +8,13 @@
 
 import UIKit
 
+/**
+ * @brief Protocol defines common interface for all cordinators
+ */
 protocol CoordinatorProtocol {
+    /**
+     * @brief Method which starts navigation in current coordinator
+     */
     func start(from navigationController: UINavigationController)
 }
 
@@ -16,13 +22,24 @@ protocol UserSessionManagerProtocol {
     func getDeviceToken(handler: @escaping (_ sessionWithToken: UserSessionManager?) -> ())
 }
 
+/**
+ * @brief The class provides root navigation for child coordinators.
+ */
 class AppCoordinator {
     
     private let rootWindow : UIWindow
     private let rootNavigationController : UINavigationController = UINavigationController()
+    
+    /**
+     * @brief childCoordinator keeps reference on last coordinator
+     */
     private var childCoordinator : CoordinatorProtocol?
     
     var serviceManager : ServiceManager!
+    
+    /**
+     * @brief keeps reference on last user session
+     */
     var userSessionManager : UserSessionManagerProtocol!
     
     init(_ defaultWindow: UIWindow) {

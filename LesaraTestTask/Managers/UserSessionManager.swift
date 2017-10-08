@@ -8,13 +8,19 @@
 
 import UIKit
 
+/**
+ * @brief UserSessionManager class - for accessing of current signed user's session.
+ */
 class UserSessionManager :  UserSessionManagerProtocol, TokenMangerProtocol {
     
     var tokenModel: DeviceTokenModel?
 
+    /**
+     * @brief Get token for current device. For further use in calling web api.
+     */
     func getDeviceToken(handler: @escaping (_ sessionWithToken: UserSessionManager?) -> ()) {
         
-        if let lastToken = UserDefaults().lastUserToken() {
+        if let lastToken = UserDefaults().lastUserToken() { // Try get token from storage.
             self.tokenModel = lastToken
             handler(self)
             return

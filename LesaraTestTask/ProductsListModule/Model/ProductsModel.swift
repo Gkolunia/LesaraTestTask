@@ -7,7 +7,10 @@
 //
 
 import Foundation
-
+/**
+ * @brief Protocol of model which can be used for pagination controller.
+ * @see PaginationController
+ */
 protocol PaginationModel : Codable {
     var count : Int { get }
     var pages : Int { get }

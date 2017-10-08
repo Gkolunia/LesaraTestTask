@@ -21,7 +21,7 @@ class EndlessScrollController : NSObject, EndlessScrollControllerProtocol {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if ((scrollView.contentOffset.y + scrollView.frame.size.height*2) >= scrollView.contentSize.height) {
+        if ((scrollView.contentOffset.y + scrollView.frame.size.height*4) >= scrollView.contentSize.height) {
             if let callBack = needsLoadMoreCallBack {
                 callBack()
             }

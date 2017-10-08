@@ -8,19 +8,31 @@
 
 import Foundation
 
+/**
+ * @brief Universal pagination controller. Save current state of pagination.
+ */
 class PaginationController<T : PaginationModel> {
 
-    typealias PaginationRequestHandler = (Int, @escaping (Bool, T?, ErrorMessage?) -> ()) -> ()
+    typealias PaginationRequestHandler = (_ pageNumber: Int, @escaping (Bool, T?, ErrorMessage?) -> ()) -> ()
     
+    /**
+     * @brief In the closure can be call any web api which has pages. With input parameter page number.
+     */
     var paginationRequest : PaginationRequestHandler
     
+    /**
+     * @brief Describes current pagination state.
+     */
     private var paginationModel : PaginationModel?
     private var isLoadingNewPage : Bool = false
     
     init(_ defaultPaginationRequest : @escaping PaginationRequestHandler) {
         paginationRequest = defaultPaginationRequest
     }
-
+    
+    /**
+     * @brief Make iteration to the next page and call closure with current number page.
+     */
     func nextPage(_ handler:@escaping (Bool, T?, ErrorMessage?) -> ()) {
         if !isLoadingNewPage {
             isLoadingNewPage = true
@@ -38,6 +50,9 @@ class PaginationController<T : PaginationModel> {
         }
     }
     
+    /**
+     * @brief Reset current state.
+     */
     func resetState() {
         paginationModel = nil
     }

@@ -42,6 +42,9 @@ class ServiceManager {
 
     private let userSessionManager : TokenMangerProtocol
     
+    /**
+     * @brief Base method which construct url request with params and http body.
+     */
     static func makeRequest<T: Codable>(_ urlString: String, _ httpParams: [String : String]? = nil, _ requestType: RequsetType, _ httpBody: Data? = nil, handler:@escaping CompletionHandler<T>) {
         
         var fullUrl = ServiceConstants.baseUrl+urlString+"?app_token="+ServiceConstants.applicationToken
@@ -113,6 +116,9 @@ class ServiceManager {
         userSessionManager = defaultUserSessionManager
     }
     
+    /**
+     * @brief All web api which is need token should go through the method.
+     */
     private func makeUrlWithTokenAndStore<T: Codable>(_ urlString: String, _ httpParams: [String : String]? = nil, _ requestType: RequsetType, _ httpBody: Data? = nil, handler:@escaping CompletionHandler<T>) {
         
         var tokenAndStoreParams = ["store_id" : String(userSessionManager.tokenModel!.storeId),
@@ -135,6 +141,7 @@ extension ServiceManager : ProductsListServiceManager {
         if pageNumber != 0 {
             pageParam = ["page_override" : String(pageNumber)]
         }
+        
         makeUrlWithTokenAndStore(ApiUrls.trendProducts, pageParam, RequsetType.get, handler: handler)
     }
     

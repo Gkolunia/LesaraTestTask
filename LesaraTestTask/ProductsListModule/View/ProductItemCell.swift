@@ -23,6 +23,7 @@ class ProductItemCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        productImageView.cancelLoading()
         productImageView.image = nil
         productName.text = nil
         productPrice.text = nil
